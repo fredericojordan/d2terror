@@ -4,13 +4,13 @@
 
 This is a bot that scrapes [d2runewizard's API](https://d2runewizard.com/integration) and offers the following functionalities on Discord:
 
-1. `!terror` command for Terror Zone tracker verification.
+![!terror command](example.png)
 
 ## Quickstart
 
 [Click here](https://discord.com/api/oauth2/authorize?client_id=1035556810951753889&permissions=380104756288&scope=bot) to add D2 Terror Zone bot to your Discord server!
 
-## Running the bot
+## Running your own bot
 
 You may also download the code, alter it in any fashion and run the bot on your own computer.
 
