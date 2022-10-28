@@ -1,6 +1,5 @@
 import datetime
 import os
-from pprint import pprint
 
 import discord
 import requests
@@ -62,22 +61,23 @@ class D2Terror(discord.Client):
             return
 
         if message.content.startswith("!terror"):
-            self.get_terror_zone_json()
-            await message.channel.send(self.status_text())
+            self.update_terror_zone_cache()
+            await message.channel.send(self.terror_zone_text())
 
-    def get_terror_zone_json(self):
+    def update_terror_zone_cache(self):
         terror_zone_json = get_terror_zone_json(self.get_token)
         self.cache = terror_zone_json
         return terror_zone_json
 
-    def status_text(self):
-        if "terrorZone" not in self.cache:
+    def terror_zone_text(self):
+        try:
+            terror_zone = self.cache["terrorZone"]["highestProbabilityZone"]["zone"]
+            act = self.cache["terrorZone"]["highestProbabilityZone"]["act"]
+            minutes_remaining = get_time_remaining().seconds // 60
+            return f"Current Terror Zone:\n**{terror_zone}** ({act})\nTime remaining: {minutes_remaining} min\n> Powered by d2runewizard.com"
+        except Exception as e:
+            print(e)
             return "Data unavailable."
-
-        terror_zone = self.cache["terrorZone"]["highestProbabilityZone"]["zone"]
-        act = self.cache["terrorZone"]["highestProbabilityZone"]["act"]
-        minutes_remaining = get_time_remaining().seconds // 60
-        return f"Current Terror Zone:\n**{terror_zone}** ({act})\nTime remaining: {minutes_remaining} min\n> Powered by d2runewizard.com"
 
 
 if __name__ == "__main__":
