@@ -15,11 +15,12 @@ This is a bot that scrapes [d2runewizard's API](https://d2runewizard.com/integra
 You may also download the code, alter it in any fashion and run the bot on your own computer.
 
 1. Create a [Discord Application](https://discord.com/developers/applications), enable a bot account and create its authentication token.
-2. Set your token as the `DISCORD_TOKEN` environment variable by running `export DISCORD_TOKEN=YOUR_TOKEN_HERE`.
-3. Download and run the bot by executing the following:
+2. Set your Discord token as the `DISCORD_TOKEN` environment variable by running `export DISCORD_TOKEN=YOUR_TOKEN_HERE`.
+3. [Ask for your D2RuneWizard API token](https://d2runewizard.com/integration) and set it as the `D2RUNEWIZARD_TOKEN` environment variable.
+4. Download and run the bot by executing the following:
    ```shell
    git clone https://github.com/fredericojordan/d2terror.git
    cd d2terror
    python d2terror_discord.py
    ```
-4. Generate an invite link and add the bot to your Discord server.
+5. Generate an invite link and add the bot to your Discord server.
