@@ -1,4 +1,6 @@
+import datetime
 import os
+from pprint import pprint
 
 import discord
 import requests
@@ -6,7 +8,9 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-API_BASE_URL = os.environ.get("API_BASE_URL", "https://d2runewizard.com/api/terror-zone")
+API_BASE_URL = os.environ.get(
+    "API_BASE_URL", "https://d2runewizard.com/api/terror-zone"
+)
 
 
 def get_terror_zone_json(auth_token):
@@ -40,6 +44,13 @@ def get_terror_zone_json(auth_token):
     return response.json() if response.status_code == 200 else {}
 
 
+def get_time_remaining():
+    now = datetime.datetime.now()
+    one_hour_ahead = now + datetime.timedelta(hours=1)
+    next_zone_time = one_hour_ahead.replace(minute=0, second=0, microsecond=0)
+    return next_zone_time - now
+
+
 class D2Terror(discord.Client):
     def __init__(self, get_token, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -65,7 +76,8 @@ class D2Terror(discord.Client):
 
         terror_zone = self.cache["terrorZone"]["highestProbabilityZone"]["zone"]
         act = self.cache["terrorZone"]["highestProbabilityZone"]["act"]
-        return f"Current Terror Zone:\n{terror_zone} (Act {act})\n> Powered by d2runewizard.com"
+        minutes_remaining = get_time_remaining().seconds // 60
+        return f"Current Terror Zone:\n**{terror_zone}** ({act})\nTime remaining: {minutes_remaining} min\n> Powered by d2runewizard.com"
 
 
 if __name__ == "__main__":
