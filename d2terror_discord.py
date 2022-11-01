@@ -51,18 +51,14 @@ def get_time_remaining():
 
 
 class D2Terror(discord.Client):
-    def __init__(self, get_token, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+    def __init__(self, get_token, *, intents: discord.Intents):
+        super().__init__(intents=intents)
         self.get_token = get_token
         self.cache = {}
+        self.command_tree = discord.app_commands.CommandTree(self)
 
-    async def on_message(self, message):
-        if message.author == self.user:
-            return
-
-        if message.content.startswith("!terror"):
-            self.update_terror_zone_cache()
-            await message.channel.send(self.terror_zone_text())
+    async def setup_hook(self):
+        await self.command_tree.sync()
 
     def update_terror_zone_cache(self):
         terror_zone_json = get_terror_zone_json(self.get_token)
@@ -92,5 +88,12 @@ if __name__ == "__main__":
         exit(1)
 
     client = D2Terror(d2runewizard_token, intents=discord.Intents.default())
+
+    @client.command_tree.command()
+    async def terror(interaction: discord.Interaction):
+        """Reports current Terror Zone"""
+        client.update_terror_zone_cache()
+        await interaction.response.send_message(client.terror_zone_text())
+
     print("Starting bot...")
     client.run(discord_token)
