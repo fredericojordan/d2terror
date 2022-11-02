@@ -1,6 +1,6 @@
 # Diablo II: Resurrected - Terror Zone Discord Bot
 
-[![Add to Discord](https://img.shields.io/static/v1?label=&message=Add%20to%20Discord&color=7289da&logo=discord&labelColor=424549)](https://discord.com/api/oauth2/authorize?client_id=1035556810951753889&permissions=380104756288&scope=bot) [![powered-by-d2runewizard.com](https://img.shields.io/badge/powered%20by-d2runewizard.com-23201d)](https://d2runewizard.com/)
+[![Add to Discord](https://img.shields.io/static/v1?label=&message=Add%20to%20Discord&color=7289da&logo=discord&labelColor=424549)](https://discord.com/api/oauth2/authorize?client_id=1035556810951753889&permissions=0&scope=bot) [![powered-by-d2runewizard.com](https://img.shields.io/badge/powered%20by-d2runewizard.com-23201d)](https://d2runewizard.com/)
 
 This is a bot that scrapes [d2runewizard's API](https://d2runewizard.com/integration) and offers the following functionalities on Discord:
 
@@ -8,7 +8,7 @@ This is a bot that scrapes [d2runewizard's API](https://d2runewizard.com/integra
 
 ## Quickstart
 
-[Click here](https://discord.com/api/oauth2/authorize?client_id=1035556810951753889&permissions=380104756288&scope=bot) to add D2 Terror Zone bot to your Discord server!
+[Click here](https://discord.com/api/oauth2/authorize?client_id=1035556810951753889&permissions=0&scope=bot) to add D2 Terror Zone bot to your Discord server!
 
 ## Running your own bot
 
