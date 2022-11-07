@@ -88,6 +88,7 @@ class D2Terror(discord.Client):
 
         if terror_zone in ZONE_INFO:
             zone = ZONE_INFO[terror_zone]
+            embed.title = f"{zone['name']} (act {act[-1]})"
             embed.add_field(
                 name="Immunities:", value=", ".join(zone["immunities"]), inline=True
             )

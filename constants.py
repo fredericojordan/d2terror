@@ -16,7 +16,7 @@ ZONE_INFO = {
         "chests": 1,
     },
     "Burial Grounds, The Crypt, and The Mausoleum": {
-        "name": "Burial Grounds, The Crypt, and The Mausoleum",
+        "name": "Burial Grounds, The Crypt and The Mausoleum",
         "immunities": ["l"],
         "boss_packs": [8, 10],
         "uniques": ["Blood Raven", "Bonebreaker"],
@@ -79,7 +79,7 @@ ZONE_INFO = {
         "chests": 0,
     },
     "Sewers": {
-        "name": "Sewers",
+        "name": "Lut Gholein Sewers",
         "immunities": ["f", "c", "p", "m"],
         "boss_packs": [18, 24],
         "uniques": ["Radament"],
@@ -254,7 +254,7 @@ ZONE_INFO = {
         "chests": 1,
     },
     "Worldstone Keep, Throne of Destruction, and Worldstone Chamber": {
-        "name": "Worldstone Keep, Throne of Destruction, and Worldstone Chamber",
+        "name": "Worldstone Keep, Throne of Destruction and Worldstone Chamber",
         "immunities": ["f", "c", "l", "p", "ph", "m"],
         "boss_packs": [22, 29],
         "uniques": [
