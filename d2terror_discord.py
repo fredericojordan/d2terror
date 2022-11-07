@@ -5,7 +5,7 @@ import discord
 import requests
 from dotenv import load_dotenv
 
-from constants import ACT_COLORS, ZONE_INFO
+from constants import ACT_COLORS, IMMUNITY_EMOJIS, ZONE_INFO
 
 load_dotenv()
 
@@ -52,6 +52,12 @@ def get_time_remaining():
     return next_zone_time - now
 
 
+def get_immunity_emojis(immunities):
+    return (
+        "".join([IMMUNITY_EMOJIS.get(i) for i in immunities]) if immunities else "None"
+    )
+
+
 class D2Terror(discord.Client):
     def __init__(self, get_token, *, intents: discord.Intents):
         super().__init__(intents=intents)
@@ -90,11 +96,13 @@ class D2Terror(discord.Client):
             zone = ZONE_INFO[terror_zone]
             embed.title = f"{zone['name']} (act {act[-1]})"
             embed.add_field(
-                name="Immunities:", value=", ".join(zone["immunities"]), inline=True
-            )
-            embed.add_field(
                 name="Boss packs:",
                 value=f"{zone['boss_packs'][0]} to {zone['boss_packs'][1]}",
+                inline=True,
+            )
+            embed.add_field(
+                name="Immunities:",
+                value=get_immunity_emojis(zone["immunities"]),
                 inline=True,
             )
             if zone["uniques"]:

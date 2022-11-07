@@ -272,7 +272,16 @@ ZONE_INFO = {
 ACT_COLORS = {
     "act1": Colour(0x789055),
     "act2": Colour(0xCBB386),
-    "act3": Colour(0x3E5926),
+    "act3": Colour(0x2B3E1B),
     "act4": Colour(0x8C310E),
     "act5": Colour(0xD8D8D5),
+}
+
+IMMUNITY_EMOJIS = {
+    "c": "\U00002744️",
+    "f": "\U0001F525",
+    "l": "\U000026A1",
+    "p": "\U00002620",
+    "ph": "\U0001F4AA",
+    "m": "\U00002728",
 }
