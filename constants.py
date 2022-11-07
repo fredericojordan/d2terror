@@ -107,7 +107,7 @@ ZONE_INFO = {
         "chests": 0,
     },
     "Lost City, Valley of Snakes, and Claw Viper Temple": {
-        "name": "Lost City, Valley of Snakes, and Claw Viper Temple",
+        "name": "Lost City, Valley of Snakes and Claw Viper Temple",
         "immunities": ["f", "c", "l", "p", "m"],
         "boss_packs": [21, 28],
         "uniques": ["Dark Elder", "Fangskin"],
@@ -142,7 +142,7 @@ ZONE_INFO = {
         "chests": 0,
     },
     "Kurast Bazaar, Ruined Temple, and Disused Fane": {
-        "name": "Kurast Bazaar, Ruined Temple, and Disused Fane",
+        "name": "Kurast Bazaar, Ruined Temple and Disused Fane",
         "immunities": ["f", "c", "ph", "m", "l", "p"],
         "boss_packs": [15, 17],
         "uniques": ["Battlemaid Sarina"],
