@@ -239,7 +239,7 @@ ZONE_INFO = {
         "uniques": ["Thresh Socket"],
         "chests": 0,
     },
-    "Nihlathak's Temple and Temple Halls": {
+    "Nihlathak's Temple, Halls of Anguish, Halls of Pain, and Halls of Vaught": {
         "name": "Nihlathak's Temple and Temple Halls",
         "immunities": ["c", "f", "l", "p", "ph", "m"],
         "boss_packs": [12, 14],
@@ -274,5 +274,5 @@ ACT_COLORS = {
     "act2": Colour(0xCBB386),
     "act3": Colour(0x3E5926),
     "act4": Colour(0x8C310E),
-    "act5": Colour(0xB1B0AB),
+    "act5": Colour(0xD8D8D5),
 }
