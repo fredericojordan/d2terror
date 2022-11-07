@@ -73,7 +73,7 @@ class D2Terror(discord.Client):
         self.cache = terror_zone_json
         return terror_zone_json
 
-    def terror_zone_info(self):
+    def terror_zone_embed_message(self):
         if "terrorZone" not in self.cache:
             raise AttributeError("Cache missing!")
 
@@ -140,11 +140,10 @@ if __name__ == "__main__":
         """Reports current Terror Zone"""
         client.update_terror_zone_cache()
         try:
-            embed = client.terror_zone_info()
-            await interaction.response.send_message(embed=embed)
+            await interaction.response.send_message(embed=client.terror_zone_embed_message())
         except Exception as e:
             print(e, flush=True)
-            await interaction.response.send_message("Data unavailable.")
+            await interaction.response.send_message(content="Data unavailable.")
 
     print("Starting bot...", flush=True)
     client.run(discord_token)
