@@ -5,6 +5,8 @@ import discord
 import requests
 from dotenv import load_dotenv
 
+from constants import ACT_COLORS, ZONE_INFO
+
 load_dotenv()
 
 API_BASE_URL = os.environ.get(
@@ -33,8 +35,8 @@ def get_terror_zone_json(auth_token):
                 amount: number;
                 probability: number;
             };
-            providedBy: "https://d2runewizard.com/terror-zone-tracker"
         };
+        providedBy: "https://d2runewizard.com/terror-zone-tracker"
     }
     """
     params = {"token": auth_token}
@@ -65,15 +67,50 @@ class D2Terror(discord.Client):
         self.cache = terror_zone_json
         return terror_zone_json
 
-    def terror_zone_text(self):
-        try:
-            terror_zone = self.cache["terrorZone"]["highestProbabilityZone"]["zone"]
-            act = self.cache["terrorZone"]["highestProbabilityZone"]["act"]
-            minutes_remaining = get_time_remaining().seconds // 60
-            return f"Current Terror Zone:\n**{terror_zone}** ({act})\nTime remaining: {minutes_remaining} min\n> Powered by d2runewizard.com"
-        except Exception as e:
-            print(e)
-            return "Data unavailable."
+    def terror_zone_info(self):
+        if "terrorZone" not in self.cache:
+            raise AttributeError("Cache missing!")
+
+        terror_zone = self.cache["terrorZone"]["highestProbabilityZone"]["zone"]
+        act = self.cache["terrorZone"]["highestProbabilityZone"]["act"]
+        url = self.cache.get("providedBy", "https://d2runewizard.com/")
+        minutes_remaining = get_time_remaining().seconds // 60
+        title = f"{terror_zone} (act {act[-1]})"
+
+        embed = discord.Embed(
+            title=title,
+            url=url,
+            color=ACT_COLORS.get(act, discord.Colour.blue()),
+        )
+        embed.add_field(
+            name="Time remaining:", value=f"{minutes_remaining} min", inline=True
+        )
+
+        if terror_zone in ZONE_INFO:
+            zone = ZONE_INFO[terror_zone]
+            embed.add_field(
+                name="Immunities:", value=", ".join(zone["immunities"]), inline=True
+            )
+            embed.add_field(
+                name="Boss packs:",
+                value=f"{zone['boss_packs'][0]} to {zone['boss_packs'][1]}",
+                inline=True,
+            )
+            if zone["uniques"]:
+                embed.add_field(
+                    name="Unique monsters:",
+                    value=", ".join(zone["uniques"]),
+                    inline=True,
+                )
+            embed.add_field(name="Sparkly chests:", value=zone["chests"], inline=True)
+        else:
+            print(f"zone info missing: {terror_zone}")
+
+        embed.set_footer(
+            text="Powered by d2runewizard.com",
+            icon_url="https://d2runewizard.com/icons/favicon-32x32.png",
+        )
+        return embed
 
 
 if __name__ == "__main__":
@@ -93,7 +130,12 @@ if __name__ == "__main__":
     async def terror(interaction: discord.Interaction):
         """Reports current Terror Zone"""
         client.update_terror_zone_cache()
-        await interaction.response.send_message(client.terror_zone_text())
+        try:
+            embed = client.terror_zone_info()
+            await interaction.response.send_message(embed=embed)
+        except Exception as e:
+            print(e)
+            await interaction.response.send_message("Data unavailable.")
 
     print("Starting bot...")
     client.run(discord_token)
