@@ -105,7 +105,7 @@ class D2Terror(discord.Client):
                 )
             embed.add_field(name="Sparkly chests:", value=zone["chests"], inline=True)
         else:
-            print(f"zone info missing: {terror_zone}")
+            print(f"zone info missing: {terror_zone}", flush=True)
 
         embed.set_footer(
             text="Powered by d2runewizard.com",
@@ -135,8 +135,8 @@ if __name__ == "__main__":
             embed = client.terror_zone_info()
             await interaction.response.send_message(embed=embed)
         except Exception as e:
-            print(e)
+            print(e, flush=True)
             await interaction.response.send_message("Data unavailable.")
 
-    print("Starting bot...")
+    print("Starting bot...", flush=True)
     client.run(discord_token)
