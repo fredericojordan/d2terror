@@ -105,12 +105,11 @@ class D2Terror(discord.Client):
                 value=get_immunity_emojis(zone["immunities"]),
                 inline=True,
             )
-            if zone["uniques"]:
-                embed.add_field(
-                    name="Unique monsters:",
-                    value=", ".join(zone["uniques"]),
-                    inline=True,
-                )
+            embed.add_field(
+                name="Unique monsters:",
+                value=", ".join(zone["uniques"]) if zone["uniques"] else "None",
+                inline=True,
+            )
             embed.add_field(name="Sparkly chests:", value=zone["chests"], inline=True)
         else:
             print(f"zone info missing: {terror_zone}", flush=True)
