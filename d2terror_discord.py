@@ -106,7 +106,7 @@ class D2Terror(discord.Client):
                 inline=True,
             )
             embed.add_field(
-                name="Unique monsters:",
+                name="Super unique monsters:",
                 value=", ".join(zone["uniques"]) if zone["uniques"] else "None",
                 inline=True,
             )
