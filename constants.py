@@ -272,7 +272,7 @@ ZONE_INFO = {
 ACT_COLORS = {
     "act1": Colour(0x789055),
     "act2": Colour(0xCBB386),
-    "act3": Colour(0x2B3E1B),
+    "act3": Colour(0x223216),
     "act4": Colour(0x8C310E),
     "act5": Colour(0xD8D8D5),
 }
